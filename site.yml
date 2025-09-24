@@ -42,6 +42,13 @@
       state: latest
     when: ansible_distribution == "CentOS" 
 
+  - name: start httpd automatically
+    service: 
+      name: httpd
+      state: started
+      enabled: yes
+    when: ansible_distribution == "CentOS"    
+
   - name: copy default html for site
     copy:
       src: default_sites.html
