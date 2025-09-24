@@ -39,3 +39,33 @@
     when: ansible_distribution == "CentOS"      
 
      
+- hosts: db_servers
+  become: true
+  tasks:
+  
+    
+  - name: install mariadb for Ubuntu
+    apt:
+      name: 
+        - mariadb-server
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+
+  - name: install mariadb Centos
+    dnf:
+      name: 
+        - mariadb
+      state: latest
+    when: ansible_distribution == "CentOS"   
+
+
+- hosts: file_servers
+  become: true
+  tasks:
+  
+    
+  - name: install samba 
+    apt:
+      package: 
+        - samba
+      state: latest
